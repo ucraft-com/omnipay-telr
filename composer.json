@@ -1,0 +1,23 @@
+{
+  "name": "ucraft-com/omnipay-telr",
+  "description": "Telr driver for the Omnipay payment processing library.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ucraft",
+      "email": "shushanna@ucraft.com"
+    }
+  ],
+  "require": {
+    "omnipay/common": "^3.2",
+    "guzzlehttp/guzzle": "^7.4"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
+  },
+  "autoload": {
+    "psr-4": {
+      "Omnipay\\Telr\\": "src/"
+    }
+  }
+}
