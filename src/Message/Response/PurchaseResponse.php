@@ -49,7 +49,7 @@ class PurchaseResponse extends AbstractResponse
     /**
      * @inheritDoc
      */
-    public function getTransactionReference() : null|string
+    public function getTransactionReference() : ?string
     {
         return $this->data['order']['ref'] ?? null;
     }

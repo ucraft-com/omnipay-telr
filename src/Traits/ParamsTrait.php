@@ -225,9 +225,9 @@ trait ParamsTrait
      *
      * @return string|null
      */
-    public function getBillingTitle() : string|null
+    public function getBillingTitle() : ?string
     {
-        return $this->getParameter('bill_title') ?? null;
+        return $this->getParameter('bill_title');
     }
 
     /**
@@ -237,7 +237,7 @@ trait ParamsTrait
      *
      * @return $this
      */
-    public function setBillingTitle(string|null $value) : static
+    public function setBillingTitle(?string $value) : static
     {
         return $this->setParameter('bill_title', $value);
     }
@@ -245,9 +245,9 @@ trait ParamsTrait
     /**
      * Get the first name of the billing user.
      *
-     * @return string
+     * @return string|null
      */
-    public function getBillingFirstName() : string
+    public function getBillingFirstName() : ?string
     {
         return $this->getParameter('bill_fname');
     }
@@ -255,11 +255,11 @@ trait ParamsTrait
     /**
      * Set the first name of the billing user.
      *
-     * @param string $value
+     * @param string|null $value
      *
      * @return $this
      */
-    public function setBillingFirstName(string $value) : static
+    public function setBillingFirstName(?string $value) : static
     {
         return $this->setParameter('bill_fname', $value);
     }
@@ -267,9 +267,9 @@ trait ParamsTrait
     /**
      * Get the surname of the billing user.
      *
-     * @return string
+     * @return string|null
      */
-    public function getBillingSurname() : string
+    public function getBillingSurname() : ?string
     {
         return $this->getParameter('bill_sname');
     }
@@ -277,11 +277,11 @@ trait ParamsTrait
     /**
      * Set the surname of the billing user.
      *
-     * @param string $value
+     * @param string|null $value
      *
      * @return $this
      */
-    public function setBillingSurname(string $value) : static
+    public function setBillingSurname(?string $value) : static
     {
         return $this->setParameter('bill_sname', $value);
     }
@@ -291,9 +291,9 @@ trait ParamsTrait
      *
      * @return string|null
      */
-    public function getBillingEmail() : string|null
+    public function getBillingEmail() : ?string
     {
-        return $this->getParameter('bill_email') ?? null;
+        return $this->getParameter('bill_email');
     }
 
     /**
@@ -303,7 +303,7 @@ trait ParamsTrait
      *
      * @return $this
      */
-    public function setBillingEmail(string|null $value) : static
+    public function setBillingEmail(?string $value) : static
     {
         return $this->setParameter('bill_email', $value);
     }
@@ -313,9 +313,9 @@ trait ParamsTrait
      *
      * @return string|null
      */
-    public function getBillingAddress1() : string|null
+    public function getBillingAddress1() : ?string
     {
-        return $this->getParameter('bill_addr1') ?? null;
+        return $this->getParameter('bill_addr1');
     }
 
     /**
@@ -325,7 +325,7 @@ trait ParamsTrait
      *
      * @return $this
      */
-    public function setBillingAddress1(string|null $value) : static
+    public function setBillingAddress1(?string $value) : static
     {
         return $this->setParameter('bill_addr1', $value);
     }
@@ -335,7 +335,7 @@ trait ParamsTrait
      *
      * @return string|null
      */
-    public function getBillingCity() : string|null
+    public function getBillingCity() : ?string
     {
         return $this->getParameter('bill_city');
     }
@@ -347,7 +347,7 @@ trait ParamsTrait
      *
      * @return $this
      */
-    public function setBillingCity(string|null $value) : static
+    public function setBillingCity(?string $value) : static
     {
         return $this->setParameter('bill_city', $value);
     }
@@ -357,7 +357,7 @@ trait ParamsTrait
      *
      * @return string|null
      */
-    public function getBillingCountry() : string|null
+    public function getBillingCountry() : ?string
     {
         return $this->getParameter('bill_country');
     }
@@ -369,7 +369,7 @@ trait ParamsTrait
      *
      * @return $this
      */
-    public function setBillingCountry(string|null $value) : static
+    public function setBillingCountry(?string $value) : static
     {
         return $this->setParameter('bill_country', $value);
     }
@@ -395,23 +395,23 @@ trait ParamsTrait
     }
 
     /**
-     * Get binging id.
+     * Get authorised transaction reference.
      *
      * @return string
      */
-    public function getBindingId() : string
+    public function getAuthorisedTransactionReference() : string
     {
         return $this->getParameter('tran_ref');
     }
 
     /**
-     * Set binging id.
+     * Set authorised transaction reference.
      *
      * @param string $value
      *
      * @return $this
      */
-    public function setBindingId(string $value) : static
+    public function setAuthorisedTransactionReference(string $value) : static
     {
         return $this->setParameter('tran_ref', $value);
     }

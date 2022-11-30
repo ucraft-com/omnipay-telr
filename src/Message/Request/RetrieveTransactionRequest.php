@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Omnipay\Telr\Message\Request;
 
-use GuzzleHttp\Client;
 use Omnipay\Telr\Message\Response\RetrieveTransactionResponse;
 use Omnipay\Telr\Traits\AuthParamsTrait;
 use Omnipay\Telr\Traits\ParamsTrait;
@@ -48,24 +47,15 @@ class RetrieveTransactionRequest extends AbstractRequest
     public function sendData($data)
     {
         try {
-//            $httpResponse = $this->httpClient->request(
-//                $this->getHttpMethod(),
-//                $this->getEndpoint(),
-//                ['Authorization' => $this->getServerKey()],
-//                json_encode($data)
-//            );
-
-            $client = new Client();
-
-            $httpResponse = $client->post($this->getEndpoint(), [
-                'form_params' => [
-                    ...$data
-                ],
-                'headers'     => [
-                    'Accept'       => 'application/json',
+            $httpResponse = $this->httpClient->request(
+                $this->getHttpMethod(),
+                $this->getEndpoint(),
+                [
+                    'Accept'       => '*/*',
                     'Content-Type' => 'application/x-www-form-urlencoded',
                 ],
-            ]);
+                http_build_query($data)
+            );
 
             return $this->response = new RetrieveTransactionResponse($this, $httpResponse->getBody()->getContents());
         } catch (Throwable $ex) {

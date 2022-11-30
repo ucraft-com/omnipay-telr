@@ -12,21 +12,21 @@ trait AuthParamsTrait
     /**
      * Get merchant's store id.
      *
-     * @return int
+     * @return string
      */
-    public function getIvpStore() : int
+    public function getIvpStore() : string
     {
-        return $this->getParameter('ivp_store');
+        return (string) $this->getParameter('ivp_store');
     }
 
     /**
      * Set merchant's store id.
      *
-     * @param int $storeId
+     * @param string $storeId
      *
      * @return $this
      */
-    public function setIvpStore(int $storeId) : static
+    public function setIvpStore(string $storeId) : static
     {
         return $this->setParameter('ivp_store', $storeId);
     }
@@ -51,5 +51,27 @@ trait AuthParamsTrait
     public function setIvpAuthKey(string $authKey) : static
     {
         return $this->setParameter('ivp_authkey', $authKey);
+    }
+
+    /**
+     * Get merchant's remote api auth key.
+     *
+     * @return string
+     */
+    public function getIvpRemoteApiAuthKey() : string
+    {
+        return $this->getParameter('ivp_remote_api_authkey');
+    }
+
+    /**
+     * Set merchant's remote api auth key.
+     *
+     * @param string $remoteApiAuthKey
+     *
+     * @return $this
+     */
+    public function setIvpRemoteApiAuthKey(string $remoteApiAuthKey) : static
+    {
+        return $this->setParameter('ivp_remote_api_authkey', $remoteApiAuthKey);
     }
 }

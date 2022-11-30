@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Omnipay\Telr\Message\Request;
 
-use GuzzleHttp\Client;
 use Omnipay\Telr\Message\Response\BindingPaymentResponse;
 use Omnipay\Telr\Traits\AuthParamsTrait;
 use Omnipay\Telr\Traits\ParamsTrait;
@@ -34,24 +33,24 @@ class BindingPaymentRequest extends AbstractRequest
     {
         $this->validate(
             'ivp_store',
-            'ivp_authkey',
+            'ivp_remote_api_authkey',
             'ivp_trantype',
             'ivp_tranclass',
             'ivp_currency',
             'ivp_amount',
             'tran_ref',
+            'testMode'
         );
 
         $data = [];
         $data['ivp_store'] = $this->getIvpStore();
-        $data['ivp_authkey'] = $this->getIvpAuthKey();
-        $data['ivp_cart'] = $this->getIvpCart();
-        $data['ivp_trantype'] = $this->getIvPTranType();
-        $data['ivp_tranclass'] = $this->getIvPTranClass();
+        $data['ivp_authkey'] = $this->getIvpRemoteApiAuthKey();
+        $data['ivp_trantype'] = $this->getIvpTranType();
+        $data['ivp_tranclass'] = $this->getIvpTranClass();
         $data['ivp_currency'] = $this->getIvpCurrency();
         $data['ivp_amount'] = $this->getIvpAmount();
-        $data['ivp_firstRef'] = $this->getBindingId();
-        $data['ivp_test'] = '1';
+        $data['tran_ref'] = $this->getAuthorisedTransactionReference();
+        $data['ivp_test'] = $this->getTestMode();
 
         return $data;
     }
@@ -62,19 +61,19 @@ class BindingPaymentRequest extends AbstractRequest
     public function sendData($data)
     {
         try {
-            $client = new Client();
-
-            $httpResponse = $client->post($this->getEndpoint(), [
-                'form_params' => [
-                    ...$data
-                ],
-                'headers'     => [
-                    'Accept'       => 'application/json',
+            $httpResponse = $this->httpClient->request(
+                $this->getHttpMethod(),
+                $this->getEndpoint(),
+                [
+                    'Accept'       => '*/*',
                     'Content-Type' => 'application/x-www-form-urlencoded',
                 ],
-            ]);
+                http_build_query($data)
+            );
 
-            return $this->response = new BindingPaymentResponse($this, $httpResponse->getBody()->getContents());
+            parse_str(trim($httpResponse->getBody()->getContents(), "\t\n\r\0\x0B"), $data);
+
+            return $this->response = new BindingPaymentResponse($this, $data);
         } catch (Throwable $ex) {
             return new BindingPaymentResponse($this, ['message' => $ex->getMessage(), 'code' => (string) $ex->getCode()]);
         }
