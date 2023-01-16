@@ -96,9 +96,9 @@ class RetrieveTransactionResponse extends AbstractResponse
     /**
      * Get the order reference.
      *
-     * @return string|null
+     * @return string
      */
-    public function getOrderReference() : ?string
+    public function getOrderReference() : string
     {
         return $this->data['order']['ref'];
     }
