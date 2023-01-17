@@ -309,6 +309,28 @@ trait ParamsTrait
     }
 
     /**
+     * Get the phone of the billing user.
+     *
+     * @return string|null
+     */
+    public function getBillingPhone() : ?string
+    {
+        return $this->getParameter('bill_phone1');
+    }
+
+    /**
+     * Set the phone of the billing user.
+     *
+     * @param string|null $value
+     *
+     * @return $this
+     */
+    public function setBillingPhone(?string $value) : static
+    {
+        return $this->setParameter('bill_phone1', $value);
+    }
+
+    /**
      * Get the address of the billing user.
      *
      * @return string|null

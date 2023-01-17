@@ -51,6 +51,7 @@ class PurchaseRequest extends AbstractRequest
         $data['bill_fname'] = $this->getBillingFirstName();
         $data['bill_sname'] = $this->getBillingSurname();
         $data['bill_email'] = $this->getBillingEmail();
+        $data['bill_phone1'] = $this->getBillingPhone();
         $data['bill_addr1'] = $this->getBillingAddress1();
         $data['bill_city'] = $this->getBillingCity();
         $data['bill_country'] = $this->getBillingCountry();
